@@ -1,4 +1,4 @@
-# Interview Scheduler
+# JobBox
 This project is an single-page application that allows users to manage their job applications for their job hunt.
 
 ## Final Product
