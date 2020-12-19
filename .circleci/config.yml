@@ -1,21 +1,39 @@
 version: 2
 jobs:
   build:
-    deploy:
-  machine:
-    enabled: true
+    docker:
+      - image: circleci/node:10.16
 
-  working_directory: ~/client
+    working_directory: ~/client
 
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "f8:8b:bb:1e:0d:88:dd:94:06:fd:f5:d1:6f:be:63:9d"
-    - checkout
-    - run:
-        name: Push Master to Production
-        command: |
-          git push https://github.com/chenpoyi/job-box.git master:production
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm test
+
+  deploy:
+    machine:
+      enabled: true
+
+    working_directory: ~/client
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a9:dd:3b:21:0a:b5:5e:7b:79:e3:71:bd:33:9e:c3:85"
+      - checkout
+      - run:
+          name: Push Master to Production
+          command: |
+            git push https://github.com/chenpoyi/job-box.git master:production
 
 workflows:
   version: 2
