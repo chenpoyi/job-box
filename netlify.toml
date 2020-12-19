@@ -13,4 +13,4 @@
 
 [build.environment]
   REACT_APP_API_BASE_URL = "https://paul-job-box-server.herokuapp.com/"
-  REACT_APP_WEBSOCKET_URL = "wss://paul-job-box-server.herokuapp.com//
+  REACT_APP_WEBSOCKET_URL = "wss://paul-job-box-server.herokuapp.com/"
