@@ -31,9 +31,9 @@ jobs:
             - "a9:dd:3b:21:0a:b5:5e:7b:79:e3:71:bd:33:9e:c3:85"
       - checkout
       - run:
-          name: Push Master to Production
+          name: Push Main to Production
           command: |
-            git push https://github.com/chenpoyi/job-box.git master:production
+            git push https://github.com/chenpoyi/job-box.git main:production
 
 workflows:
   version: 2
